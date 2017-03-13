@@ -20,7 +20,15 @@
         tern
         web-beautify
         web-mode
+        ggtags
+        helm-gtags
         ))
+
+(defun react/post-init-ggtags ()
+  (add-hook 'react-mode-hook #'spacemacs/ggtags-mode-enable))
+
+(defun react/post-init-helm-gtags ()
+  (spacemacs/helm-gtags-define-keys-for-mode 'react-mode))
 
 (defun react/post-init-company-tern ()
   (spacemacs|add-company-backends :backends company-tern :modes react-mode))
