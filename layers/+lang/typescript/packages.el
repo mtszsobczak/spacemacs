@@ -14,6 +14,8 @@
         add-node-modules-path
         company
         eldoc
+        ggtags
+        helm-gtags
         flycheck
         smartparens
         tide
@@ -115,3 +117,12 @@
       (spacemacs/set-leader-keys-for-major-mode 'typescript-tsx-mode
         "="  'spacemacs/typescript-format
         "sp" 'spacemacs/typescript-open-region-in-playground))))
+
+
+(defun typescript/post-init-helm-gtags ()
+  (spacemacs/helm-gtags-define-keys-for-mode 'typescript-tsx-mode)
+  (spacemacs/helm-gtags-define-keys-for-mode 'typescript-mode))
+
+(defun typescript/post-init-ggtags ()
+  (add-hook 'typescript-mode-local-vars-hook #'spacemacs/ggtags-mode-enable)
+  (add-hook 'typescript-tsx-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
